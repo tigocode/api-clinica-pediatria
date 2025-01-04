@@ -1,8 +1,11 @@
 const express = require('express');
 const app = express();
 
-app.get('/', (req, res) => {
-  res.json({Menssagem: "App Funcionado!"});
+const { retornarMedicos } = require('./service/services.js');
+
+app.get('/medicos', async (req, res) => {
+  const medicos = await retornarMedicos();
+  res.status(200).json(medicos);
 })
 app.listen(3000, () => {
   let data = new Date();
